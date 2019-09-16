@@ -1,0 +1,59 @@
+.input-wrapper {
+  height: 45px;
+  border-radius: 5px;
+  &:hover {
+    border: 1px solid rgb(21, 135, 217);
+    box-shadow: rgb(150, 209, 250) 0px 0px 2px 1px;
+  }
+  span {
+    display: block;
+    float: left;
+    height: 21px;
+    width: 18px; 
+    margin: 13px 15px;
+  } 
+  &.username {
+    border: 1px solid #e4ebf0;
+    span.input_icon {
+    background: url(//landingsite.italent.link/Content/img/user-img.png) no-repeat center;
+  }
+}
+  &.password {
+    border: 1px solid #e4ebf0;
+    span.input_icon {
+      background: url(//landingsite.italent.link/Content/img/psw-img.png) no-repeat center;
+    }
+  }
+  input {
+    height: 35px;
+    margin-top: 5px;
+    outline: none;
+    font-size: 14px;
+    color: #555;
+    font-family: PingFangSC-Regular;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+    
+  }
+}
+.btn-wrapper {
+  input[type="button"] {
+    width: 100%;
+    height: 45px;
+    background-color: #1587d9;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 15px;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+      background-color: #0571bf;
+    }
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+}

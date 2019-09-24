@@ -1,9 +1,21 @@
 import React from 'react';
-import Button from './components/Button';
-import Input from './components/Input';
-import FormWrapper from './components/formWrapper';
-
-function form() {
+import Button from '../Button';
+import Input from '../Input';
+import validate from '../../common/validate';
+export default function Form(props) {
+ const form = {
+  rules: {
+    username: {
+      type: 'String',
+      required: true,
+    },
+    password: {
+      type: 'Number',
+      required: true,
+    }
+  }
+}
+  const formRef = React.createRef();
   function handleSubmit() {
     console.log('submit already');
     formRef.current.submit();
@@ -14,27 +26,12 @@ function form() {
   function handleChange(e, value) {
     console.log('handleChange e/ value', e, value);
   }
+  function handleBlur() {
+    
+  }
   return (
-    <form>
-      <Input className="btn default"
-        type="username"
-        icon="user"
-        autoComplete='username'
-        handleChange={ handleChange }
-      />
-      <WhiteSpace />
-      <Input 
-        className="btn default"
-        type="password"
-        icon="pwd"
-        autoComplete='new-password'
-        handleClick={ handleClick }
-        handleChange={ handleChange }
-      />
-      <WhiteSpace />
-      <Button submit="submit" handleClick={ handleClick } handleSubmit={ handleSubmit } className="btn default" type="button" value="登陆"/>
-      </form>
-  );
+    <form ref={ formRef } className={props.className}> 
+      { props.children }
+    </form>
+  ); 
 }
-
-export default App;

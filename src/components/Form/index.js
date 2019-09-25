@@ -1,37 +1,25 @@
 import React from 'react';
-import Button from '../Button';
-import Input from '../Input';
-import validate from '../../common/validate';
-export default function Form(props) {
- const form = {
-  rules: {
-    username: {
-      type: 'String',
-      required: true,
-    },
-    password: {
-      type: 'Number',
-      required: true,
-    }
+export default class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.formRef = React.createRef();
   }
-}
-  const formRef = React.createRef();
-  function handleSubmit() {
+  handleSubmit = () =>{
     console.log('submit already');
-    formRef.current.submit();
+    this.formRef.current.submit();
   }
-  function handleClick(e, value) {
+  handleClick = (e, value) => {
     console.log('handleClick e/ value', e, value);
   }
-  function handleChange(e, value) {
+  handleChange = (e, value) => {
     console.log('handleChange e/ value', e, value);
   }
-  function handleBlur() {
-    
+  render() {
+    const { className, children } = this.props;
+    return (
+      <form ref={ this.formRef } className={className}> 
+        { children }
+      </form>
+    );
   }
-  return (
-    <form ref={ formRef } className={props.className}> 
-      { props.children }
-    </form>
-  ); 
 }

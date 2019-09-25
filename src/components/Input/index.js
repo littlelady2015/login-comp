@@ -9,15 +9,16 @@ export default class Input extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.onBlur = this.onBlur.bind(this);
   }
-  handleChange(e, value) {
-    this.props.handleChange(e, value); 
+  handleChange(e) {
+    const { type } = this.props;
+    this.props.handleChange(e, type); 
   }
-  onBlur(e,value) {
-    this.props.handleBlur(e,value);
+  onBlur(e) {
+    this.props.handleBlur(e);
   }
   render() {
     let {icon, id, name, placeholder, autoComplete, type, validate} = this.props;
-    const validateStyle = validate ? {display: 'none'} : {display: 'block'};
+    const validateStyle = validate.validateStatus ? {display: 'none'} : {display: 'block'};
     if(autoComplete === undefined) autoComplete = 'username'; 
     return (
       <div className={`input-wrapper ${type}`}>
@@ -27,10 +28,10 @@ export default class Input extends React.Component {
           autoComplete={autoComplete}
           placeholder={placeholder}
           type={type}
-          onChange={ this.handleChange.bind(this, type) }     
-          onBlur={ this.onBlur.bind(this, type) }
+          onChange={ this.handleChange }     
+          onBlur={ this.onBlur }
         />
-        <p style={ validateStyle }>{ validate && validate.msg}</p>
+        <p style={ validateStyle }>{ validate && validate.message }</p>
       </div>
     )
     }

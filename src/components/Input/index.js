@@ -23,15 +23,15 @@ export default class Input extends React.Component {
     return (
       <div className={`input-wrapper ${type}`}>
         {icon ? <span className="input_icon"></span>: null }
-        <input id={id}
-          name={name}
-          autoComplete={autoComplete}
-          placeholder={placeholder}
+        <input id={ id }
+          name={ name }
+          autoComplete={ autoComplete }
+          placeholder={ placeholder }
           type={type}
           onChange={ this.handleChange }     
           onBlur={ this.onBlur }
         />
-        <p style={ validateStyle }>{ validate && validate.message }</p>
+        <div className="error-info" style={ validateStyle }>{ validate && validate.message }</div>
       </div>
     )
     }

@@ -40,28 +40,38 @@ class App extends React.Component {
       }
     }
     this.imgUrl = 'http://landingsite.italent.link/Content/img/login-logo.png';
-    this.title = "北森实施一体化解决方案 ";
+    this.title = "实施一体化解决方案 ";
   }
-  handleErrors = (errors, fields) => {
+  handlerErrors = (errors, fields) => {
     let { formConfig } = this.state;
-    for (let key in fields){
-      formConfig.descriptor[key].validateStatus = false;
-    } 
+    
+    errors.forEach((item, index) => {
+      formConfig.descriptor[item.field].validateStatus = false;
+    }) 
     this.setState({
       formConfig: formConfig,
     })
   }
   formValidate = () => {
-    const { formConfig , formData} = this.state;
-     const validator = new schema(formConfig.descriptor);
-     validator.validate(formData, (error,fields) => {
-      if(error) {
-        this.handleErrors(error, fields);
-      }
-    }); 
+    const { formConfig , formData } = this.state;
+    let validateConfig = true;
+    // 初始化校验为通过
+    for(let key in formConfig.descriptor) formConfig.descriptor[key].validateStatus = true;
+    const validator = new schema(formConfig.descriptor);
+    validator.validate(formData, (errors,fields) => {
+      if(errors) {
+        validateConfig = false;
+        return this.handlerErrors(errors, fields);
+      } 
+    });
+    this.setState({
+      formConfig: formConfig
+    });
+    return validateConfig;
   }
+
   handleSubmit = () => {
-    this.formValidate(); 
+    if(this.formValidate()) this.props.history.push('/dashboard');
     // document.querySelector(".login_input_box").submit();
   }
   handleClick = (e) => {
@@ -73,7 +83,7 @@ class App extends React.Component {
      if(type === 'username') formData.username = value;
      else if (type  === 'password') formData.password = value; 
      this.setState({
-      formData: formData,
+       formData: formData,
      })
   }
   handleUsernameBlur = (e) => {

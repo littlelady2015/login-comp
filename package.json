@@ -5,7 +5,7 @@
   "dependencies": {
     "@beisen-phoenix/tooltip": "^3.1.13",
     "async-validator": "^3.1.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router": "^5.1.2",
